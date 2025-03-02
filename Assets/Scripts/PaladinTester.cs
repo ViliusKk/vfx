@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class PaladinTester : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public ParticleSystem slashEffect;
+    Animator animator;
     void Start()
     {
-        
+        animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+            StartCoroutine(Slash());
+        }
+    }
+
+    IEnumerator Slash()
+    {
+        animator.Play("Slash");
+        yield return new WaitForSeconds(0.8f);
+        slashEffect.Play();
     }
 }
